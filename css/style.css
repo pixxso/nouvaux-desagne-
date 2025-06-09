@@ -49,96 +49,53 @@ body {
   padding-bottom: 4px;
 }
 
-/* HERO / HEADINGS */
-.features h1 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #0d47a1;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+/* HERO AVEC BACKGROUND MODERNE */
+.hero {
+  background: linear-gradient(135deg, #fdf7f2, #f0f6ff);
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.features {
-  padding: 3rem 5%;
-  max-width: 700px;
+.hero-bg {
+  max-width: 800px;
   margin: auto;
 }
 
-/* FORM */
-form {
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
-}
-
-form label {
-  display: block;
-  margin-bottom: 0.3rem;
-  font-weight: 600;
-  color: #333;
-}
-
-form input,
-form select,
-form textarea {
-  width: 100%;
-  padding: 0.8rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  background-color: #f9f9f9;
-}
-
-/* BUTTON */
-.btn {
-  background-color: #ffca28;
+.hero h1 {
+  font-size: 2.5rem;
   color: #0d47a1;
+  margin-bottom: 1rem;
+}
+
+.hero .tagline {
+  font-size: 1.2rem;
   font-weight: bold;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
+  color: #333;
+  margin-bottom: 1rem;
 }
 
-.btn:hover {
-  background-color: #fdd835;
+.hero .motivation {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
-/* CONFIRMATION MESSAGE */
-#confirmation-message {
-  margin-top: 2rem;
-  background-color: #e8f5e9;
-  border-left: 4px solid #4caf50;
-  padding: 1rem;
-  border-radius: 6px;
-  color: #2e7d32;
-  font-weight: 500;
+.hero .highlight {
+  font-size: 1rem;
+  color: #ff9800;
+  font-weight: 600;
+  margin-bottom: 2rem;
 }
 
-/* FOOTER */
-footer {
-  background-color: #fafafa;
-  border-top: 1px solid #eee;
-  text-align: center;
-  padding: 1rem 0;
-  margin-top: 4rem;
-  font-size: 0.9rem;
-  color: #666;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .nav-links {
-    flex-direction: column;
-    gap: 0.8rem;
+/* Responsive */
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2rem;
   }
-
-  .features {
-    padding: 2rem;
+  .hero .tagline, .hero .motivation, .hero .highlight {
+    font-size: 0.95rem;
   }
 }
