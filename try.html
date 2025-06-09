@@ -22,38 +22,46 @@
   </header>
 
   <main>
-    <section class="features">
-      <h1>🎯 Essayez notre service</h1>
-      <form id="try-form">
+  <section class="features centered-section">
+    <h1>🎯 Essayez notre service</h1>
+    <form id="try-form">
+      <div class="form-group">
         <label for="specialty">Spécialité :</label>
         <select id="specialty" required>
           <option value="Juridique">Juridique</option>
           <option value="Médical">Médical</option>
           <option value="Administratif">Administratif</option>
         </select>
+      </div>
 
+      <div class="form-group">
         <label for="from">Langue source :</label>
         <select id="from">
           <option value="FR">Français</option>
           <option value="EN">Anglais</option>
         </select>
+      </div>
 
+      <div class="form-group">
         <label for="to">Langue cible :</label>
         <select id="to">
           <option value="EN">Anglais</option>
           <option value="FR">Français</option>
         </select>
+      </div>
 
+      <div class="form-group">
         <label for="input-text">Texte à traduire :</label>
         <textarea id="input-text" maxlength="300" rows="4" placeholder="Entrez votre texte ici..." required></textarea>
+        <small class="char-limit">Max 300 caractères</small>
+      </div>
 
-        <p><small>Max 300 caractères</small></p>
-        <button type="submit" class="btn">Traduire</button>
-      </form>
+      <button type="submit" class="btn">Traduire</button>
+    </form>
 
-      <div id="translation-output" style="margin-top: 2rem;"></div>
-    </section>
-  </main>
+    <div id="translation-output" class="translation-box"></div>
+  </section>
+</main>
 
   <footer>
     <p>&copy; 2025 Rword Manar. Tous droits réservés.</p>
