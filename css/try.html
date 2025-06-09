@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Essayer – Rword Manar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <section class="features">
+      <h1>🎯 Essayez notre service</h1>
+      <form id="try-form">
+        <label for="specialty">Spécialité :</label>
+        <select id="specialty" required>
+          <option value="Juridique">Juridique</option>
+          <option value="Médical">Médical</option>
+          <option value="Administratif">Administratif</option>
+        </select>
+
+        <label for="from">Langue source :</label>
+        <select id="from"><option value="FR">Français</option><option value="EN">Anglais</option></select>
+
+        <label for="to">Langue cible :</label>
+        <select id="to"><option value="EN">Anglais</option><option value="FR">Français</option></select>
+
+        <label for="input-text">Texte à traduire :</label>
+        <textarea id="input-text" maxlength="300" rows="4" placeholder="Entrez votre texte ici..." required></textarea>
+
+        <button type="submit" class="btn">Traduire</button>
+      </form>
+
+      <div id="translation-output"></div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('try-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const input = document.getElementById('input-text').value.trim();
+      const from = document.getElementById('from').value;
+      const to = document.getElementById('to').value;
+      const specialty = document.getElementById('specialty').value;
+      const output = document.getElementById('translation-output');
+
+      if (!input) {
+        output.innerHTML = "<p style='color:red;'>Veuillez entrer un texte.</p>";
+        return;
+      }
+
+      output.innerHTML = "<p>⏳ Traduction en cours...</p>";
+
+      try {
+        const formData = new FormData();
+        formData.append("text", input);
+        formData.append("from", from);
+        formData.append("to", to);
+
+        const res = await fetch("translate.php", {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await res.json();
+
+        if (data.translations) {
+          output.innerHTML = `
+            <h3>Résultat (${from} → ${to}) – Domaine : ${specialty}</h3>
+            <p style="background:#e3f2fd;padding:1rem;border-radius:5px;">
+              ${data.translations[0].text}
+            </p>
+            <p><a href="services.html" class="btn">Réservez une session ${specialty.toLowerCase()}</a></p>`;
+        } else {
+          output.innerHTML = "<p style='color:red;'>❌ Erreur API DeepL.</p>";
+        }
+      } catch (err) {
+        output.innerHTML = "<p style='color:red;'>❌ Une erreur est survenue.</p>";
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
