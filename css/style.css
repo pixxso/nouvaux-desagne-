@@ -133,4 +133,181 @@ body {
   margin-top: 2rem;
   color: #0d47a1;
   text-align: left;
+}/* 🎨 STYLE CLAIR ET COLORÉ POUR PAGES FORMULAIRES */
+
+body {
+  background: #fffdf6;
+  color: #1a1a1a;
 }
+
+/* SECTION CENTRÉE */
+.features {
+  max-width: 650px;
+  margin: auto;
+  padding: 4rem 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.features h1 {
+  color: #0d47a1;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* FORMULAIRE */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+form label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.4rem;
+}
+
+form input,
+form select,
+form textarea {
+  padding: 0.9rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fafafa;
+  font-size: 1rem;
+  transition: border 0.2s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #2196f3;
+  outline: none;
+}
+
+/* BOUTON */
+.btn {
+  background-color: #ffc107;
+  color: #0d47a1;
+  font-weight: bold;
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #ffb300;
+}
+
+/* ZONE DE RÉSULTAT */
+#translation-output,
+#confirmation-message {
+  margin-top: 2rem;
+  background: #e3f2fd;
+  border-left: 4px solid #2196f3;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #0d47a1;
+}
+/* 🎨 STYLE CLAIR ET COLORÉ POUR PAGES FORMULAIRES */
+
+body {
+  background: #fffdf6;
+  color: #1a1a1a;
+}
+
+/* SECTION CENTRÉE */
+.features {
+  max-width: 650px;
+  margin: auto;
+  padding: 4rem 2rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.features h1 {
+  color: #0d47a1;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* FORMULAIRE */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+form label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.4rem;
+}
+
+form input,
+form select,
+form textarea {
+  padding: 0.9rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fafafa;
+  font-size: 1rem;
+  transition: border 0.2s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #2196f3;
+  outline: none;
+}
+
+/* BOUTON */
+.btn {
+  background-color: #ffc107;
+  color: #0d47a1;
+  font-weight: bold;
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #ffb300;
+}
+
+/* ZONE DE RÉSULTAT */
+#translation-output,
+#confirmation-message {
+  margin-top: 2rem;
+  background: #e3f2fd;
+  border-left: 4px solid #2196f3;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #0d47a1;
+}
+
+/* ADAPTATIF */
+@media (max-width: 600px) {
+  .features {
+    padding: 2rem 1rem;
+  }
+}
+
+
+
