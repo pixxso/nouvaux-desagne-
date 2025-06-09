@@ -99,3 +99,38 @@ body {
     font-size: 0.95rem;
   }
 }
+/* PAGE ESSAYER CENTRÉE ET ACCESSIBLE */
+.centered-section {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.centered-section h1 {
+  margin-bottom: 2rem;
+  color: #0d47a1;
+  font-size: 2rem;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.char-limit {
+  font-size: 0.85rem;
+  color: #666;
+  display: block;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+}
+
+.translation-box {
+  background-color: #f1f8ff;
+  border-left: 4px solid #2196f3;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-top: 2rem;
+  color: #0d47a1;
+  text-align: left;
+}
