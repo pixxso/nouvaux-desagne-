@@ -86,7 +86,7 @@
   </main>
 
   <script>
-    document.getElementById('try-form').addEventListener('submit', async function(e) {
+    document.getElementById('try-form').addEventListener('submit', function(e) {
       e.preventDefault();
 
       const input = document.getElementById('input-text').value.trim();
@@ -100,36 +100,16 @@
         return;
       }
 
-      output.innerHTML = "<p>⏳ Traduction en cours...</p>";
+      // Simuler une traduction aléatoire
+      const fakeTranslations = {
+        "en": "This is a simulated translation in English.",
+        "fr": "Ceci est une traduction simulée en français."
+      };
 
-      try {
-        const res = await fetch("https://libretranslate.de/translate", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            q: input,
-            source: from,
-            target: to,
-            format: "text"
-          })
-        });
-
-        const data = await res.json();
-
-        if (data.translatedText) {
-          output.innerHTML = `
-            <h3>Résultat (${from} → ${to}) – Domaine : ${specialty}</h3>
-            <p>${data.translatedText}</p>
-          `;
-        } else {
-          output.innerHTML = "<p style='color:red;'>❌ Erreur de traduction.</p>";
-        }
-      } catch (err) {
-        output.innerHTML = "<p style='color:red;'>❌ Une erreur est survenue.</p>";
-        console.error(err);
-      }
+      output.innerHTML = `
+        <h3>Résultat (${from} → ${to}) – Domaine : ${specialty}</h3>
+        <p>${fakeTranslations[to]}</p>
+        <p><a href="services.html" class="btn">Réservez une session ${specialty.toLowerCase()}</a></p>`;
     });
   </script>
 </body>
