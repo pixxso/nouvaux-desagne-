@@ -1,60 +1,192 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Test Paiement PayPal</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Réserver une session – Rword Manar</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f0f4ff, #fafafa);
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrapper {
+      max-width: 720px;
+      margin: 3rem auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      padding: 2.5rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0d47a1;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    input, select {
+      padding: 0.9rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      background: #f9f9f9;
+    }
+
+    .btn {
+      background-color: #ffc107;
+      color: #0d47a1;
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #ffb300;
+    }
+
+    .message-box, #payment-box {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: #e3f2fd;
+      border-left: 6px solid #2196f3;
+      border-radius: 10px;
+      color: #0d47a1;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    #paypal-button-container {
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    @media (max-width: 600px) {
+      .wrapper {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Réservation + Paiement</h1>
+  <div class="wrapper">
+    <h1>Réserver une session</h1>
+    <p class="subtitle">Remplissez le formulaire ci-dessous pour réserver une séance de traduction</p>
 
-  <form id="booking-form">
-    <label>Date : <input type="date" id="date" required></label><br>
-    <label>Heure : <input type="time" id="time" required></label><br>
-    <label>Nom : <input type="text" id="name" required></label><br>
-    <button type="submit">Réserver</button>
-  </form>
+    <form id="booking-form">
+      <label for="date">📅 Date :</label>
+      <input type="date" id="date" required>
 
-  <p id="confirmation-message"></p>
+      <label for="time">⏰ Heure :</label>
+      <input type="time" id="time" required>
 
-  <div id="payment-box" style="display:none;">
-    <h3>Paiement PayPal</h3>
-    <div id="paypal-button-container"></div>
+      <label for="specialty">📘 Spécialité :</label>
+      <select id="specialty" required>
+        <option value="Juridique">Juridique</option>
+        <option value="Médical">Médical</option>
+        <option value="Administratif">Administratif</option>
+      </select>
+
+      <label for="name">👤 Nom complet :</label>
+      <input type="text" id="name" placeholder="Votre nom" required>
+
+      <label for="email">📧 Adresse e-mail :</label>
+      <input type="email" id="email" placeholder="exemple@mail.com" required>
+
+      <button type="submit" class="btn">Réserver maintenant</button>
+    </form>
+
+    <div id="confirmation-message" class="message-box" style="display:none;"></div>
+
+    <div id="payment-box" class="message-box" style="display:none;">
+      <h3>💳 Paiement</h3>
+      <p>Pour finaliser votre réservation, veuillez procéder au paiement sécurisé via PayPal :</p>
+      <div id="paypal-button-container"></div>
+    </div>
   </div>
 
-  <!-- PayPal SDK (client ID sandbox fourni par PayPal) -->
+  <footer>
+    &copy; 2025 Rword Manar – Tous droits réservés.
+  </footer>
+
+  <!-- PayPal SDK -->
   <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=EUR"></script>
 
   <script>
     const form = document.getElementById('booking-form');
-    const confirmMsg = document.getElementById('confirmation-message');
+    const confirmationBox = document.getElementById('confirmation-message');
     const paymentBox = document.getElementById('payment-box');
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+
       const date = document.getElementById('date').value;
       const time = document.getElementById('time').value;
+      const specialty = document.getElementById('specialty').value;
       const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
 
-      confirmMsg.textContent = `✅ Réservation pour ${name} le ${date} à ${time}`;
+      confirmationBox.style.display = 'block';
+      confirmationBox.innerHTML = `
+        <strong>✅ Réservation enregistrée</strong><br>
+        👤 Nom : ${name}<br>
+        📅 Date : ${date} à ${time}<br>
+        📘 Spécialité : ${specialty}<br>
+        📧 Email : ${email}
+      `;
+
       paymentBox.style.display = 'block';
+      renderPaypal(specialty);
+    });
 
+    function renderPaypal(specialty) {
       paypal.Buttons({
-        createOrder: (data, actions) => {
+        createOrder: function(data, actions) {
           return actions.order.create({
             purchase_units: [{
-              amount: { value: '10.00' },
-              description: "Session de traduction"
+              amount: { value: '15.00' },
+              description: `Session de traduction - ${specialty}`
             }]
           });
         },
-        onApprove: (data, actions) => {
-          return actions.order.capture().then(details => {
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
             document.getElementById('paypal-button-container').innerHTML =
               `<p style="color:green;">✅ Paiement confirmé par ${details.payer.name.given_name}</p>`;
           });
         }
       }).render('#paypal-button-container');
-    });
+    }
   </script>
 </body>
 </html>
